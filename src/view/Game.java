@@ -1,14 +1,12 @@
 package view;
 
-import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
 public class Game {
-    private Level GameLevel;
-    private Board Board;
-    private ArrayList<Player> Players ;
-    private boolean GameHasEnded = false;
+    private final Level GameLevel;
+    private final Board Board;
+    private final ArrayList<Player> Players ;
     Game(Level GameLevel , Board board){
         this.GameLevel = GameLevel;
         this.Board = board;
@@ -20,7 +18,7 @@ public class Game {
      * @author OmarAshour
      * @return The loser player after the infinite movment is returned
      * */
-    public Player StartMovment(){
+    public Player StartMovement(){
         int i = 0;
         while(true) {
             try {
