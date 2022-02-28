@@ -41,7 +41,7 @@ public class Game {
                 GameLevel.SetItem(next1.x, next1.y, "@");
                 GameLevel.SetItem(current2.x, current2.y, ")");
                 GameLevel.SetItem(next2.x, next2.y, "^");
-                Thread.sleep(300);
+                Thread.sleep(650);//changes the delay of the movment
                 Board.repaint();
             }
             catch(Exception e){
