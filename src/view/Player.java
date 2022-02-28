@@ -19,9 +19,10 @@ public class Player {
             final Image GreenBeam = ResourceLoader.loadImage("res/GreenBeam.png");
             final Image BlueBeam = ResourceLoader.loadImage("res/BlueBeam.png");
             final Image BlackBeam = ResourceLoader.loadImage("res/BlackBeam.png");
-            final Image PinkBeam = ResourceLoader.loa        this.CurrentDirection = Direction.UP;
+            final Image PinkBeam = ResourceLoader.loadImage("res/PinkBeam.png");
+            this.CurrentDirection = Direction.UP;
             this.CurrentDegree = 0;
-            this.name = name;dImage("res/PinkBeam.png");
+            this.name = name;
             final Image RedBeam = ResourceLoader.loadImage("res/RedBeam.png");
 
             this.SelectedPlayer = ResourceLoader.loadImage("res/player.png");
