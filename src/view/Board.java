@@ -10,7 +10,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Board extends JPanel {
-    private final Image   player = ResourceLoader.loadImage("res/player.png");
+    private final Image  player = ResourceLoader.loadImage("res/player.png");
     private final Image Ground = ResourceLoader.loadImage("res/ground.png");
     private final Image box = ResourceLoader.loadImage("res/box.png");
     private  Game Game;
@@ -47,27 +47,19 @@ public class Board extends JPanel {
             for(int j = 0 ; j < colms ; j++){
                 Image current = null;
                 String currBlock = Game.GetLevelItem(i, j);
-                switch (currBlock){
-                    case "#":
-                        current = Ground;
-                        break;
-                    case "&":
-                        current = box;
-                        break;
-                    case "@":
+                switch (currBlock) {
+                    case "#" -> current = Ground;
+                    case "&" -> current = box;
+                    case "@" -> {
                         current = Game.GetPlayerOneImage();
-                        Game.SetPlayerOnePosition(new Position(i , j));
-                        break;
-                    case "^":
+                        Game.SetPlayerOnePosition(new Position(i, j));
+                    }
+                    case "^" -> {
                         current = Game.GetPlayerTwoImage();
-                        Game.SetPlayerTwoPosition(new Position(i , j));
-                        break;
-                    case "(":
-                        current = Game.GetPlayerOneLightBeam();
-                        break;
-                    case ")":
-                        current = Game.GetPlayerTwoLightBeam();
-                        break;
+                        Game.SetPlayerTwoPosition(new Position(i, j));
+                    }
+                    case "(" -> current = Game.GetPlayerOneLightBeam();
+                    case ")" -> current = Game.GetPlayerTwoLightBeam();
                 }
                 gr.drawImage(current, j*scaledSize, i * scaledSize, scaledSize, scaledSize, null);
             }

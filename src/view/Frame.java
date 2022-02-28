@@ -19,9 +19,9 @@ public class Frame extends JFrame{
     JButton StartGame;
     int registeredPlayers = 1;
     ArrayList <String> ColorChoices = new ArrayList<>(Arrays.asList("Red", "Blue", "Green", "Pink", "Black"));
-    JComboBox<String> color = new JComboBox<String>(ColorChoices.toArray(new String[0]));
+    JComboBox<String> color = new JComboBox<>(ColorChoices.toArray(new String[0]));
     final String[] SizeChoices = {"6","8","10","12" , "14" , "16","18","20","22","24"};
-    final JComboBox<String> size = new JComboBox<String>(SizeChoices);
+    final JComboBox<String> size = new JComboBox<>(SizeChoices);
     JMenuItem exitMenuItem;
     JMenuItem restartMenuItem;
     JLabel RegistrationText;
@@ -32,7 +32,7 @@ public class Frame extends JFrame{
     ArrayList<Player>players;
     public Frame() {
         try {
-            players=new ArrayList<Player>();
+            players= new ArrayList<>();
             board = new Board();
             Registration();
         }
@@ -64,7 +64,7 @@ public class Frame extends JFrame{
             if(registeredPlayers < 2) {
                 registeredPlayers++;
                 RegistrationText.setText("Enter Player " + registeredPlayers + "  Name and Light Colour");
-                color.setModel(new DefaultComboBoxModel<String>(ColorChoices.toArray(new String[0])));
+                color.setModel(new DefaultComboBoxModel<>(ColorChoices.toArray(new String[0])));
             }else{
                 SetBoardSize();
             }
@@ -82,12 +82,7 @@ public class Frame extends JFrame{
         restartMenuItem.setAccelerator(
                 KeyStroke.getKeyStroke(KeyEvent.VK_R , KeyEvent.ALT_MASK)
         );
-        restartMenuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Restart();
-            }
-        });
+        restartMenuItem.addActionListener(e -> Restart());
         options.add(exitMenuItem);
         exitMenuItem.setMnemonic('X');
         exitMenuItem.setAccelerator(
@@ -121,8 +116,8 @@ public class Frame extends JFrame{
             l = new Level(boardSize);
             l.FetchFile();
             game = new Game(  l , board);
-            for(int i=0;i< players.size();i++){
-                game.getPlayers().add(players.get(i));
+            for (Player player : players) {
+                game.getPlayers().add(player);
             }
             game.SetBoard();
             add(BorderLayout.CENTER , board);
@@ -154,7 +149,7 @@ public class Frame extends JFrame{
                                     break;
                                 case KeyEvent.VK_UP:
                                     game.getPlayers().get(0).setDirection(Direction.UP);
-                                    game.getPlayers().get(0).setPlayerDirection(0 - game.getPlayers().get(0).getCurrentDegree());
+                                    game.getPlayers().get(0).setPlayerDirection(-game.getPlayers().get(0).getCurrentDegree());
                                     game.getPlayers().get(0).setCurrentDegree(0);
                                     break;
                                 case KeyEvent.VK_DOWN:
@@ -166,7 +161,7 @@ public class Frame extends JFrame{
                                     break;
                                 case KeyEvent.VK_W:
                                     game.getPlayers().get(1).setDirection(Direction.UP);
-                                    game.getPlayers().get(1).setPlayerDirection(0 - game.getPlayers().get(1).getCurrentDegree());
+                                    game.getPlayers().get(1).setPlayerDirection(-game.getPlayers().get(1).getCurrentDegree());
                                     game.getPlayers().get(1).setCurrentDegree(0);
 
                                     break;
@@ -220,17 +215,9 @@ public class Frame extends JFrame{
         this.MidPannel.add(RegistrationText);
         this.SouthPannel.add(size);
         this.SouthPannel.add(StartGame);
-            this.StartGame.addActionListener(
-
-                    new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            StartGame();
-                        }
-                    }
-
-            );
-
+        this.StartGame.addActionListener(
+                e -> StartGame()
+        );
         setVisible(true);
 
     }
@@ -248,17 +235,17 @@ public class Frame extends JFrame{
         remove(this.MidPannel);
         this.board = null;
         ColorChoices = new ArrayList<>(Arrays.asList("Red", "Yellow", "Green", "Pink", "Black"));
-        color = new JComboBox<String>(ColorChoices.toArray(new String[0]));
+        color = new JComboBox<>(ColorChoices.toArray(new String[0]));
         dispose();
         l = null;
-        players=new ArrayList<Player>();
+        players= new ArrayList<>();
         try{
             board = new Board();
+        } catch(Exception e){
+            System.err.println(e.getMessage());
         }
-    catch(Exception e){}
         game = null;
         Registration();
-
     }
 
 
