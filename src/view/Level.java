@@ -15,7 +15,7 @@ public class Level {
                 level = new String[6][6];
             }
             case 8 -> {
-                filename = new File("../res/level8.txt");
+                filename = new File("src/res/level8.txt");
                 level = new String[8][8];
             }
             case 10 -> {

@@ -7,8 +7,7 @@ public class Main {
      * @author OmarAshour
      * @param args Main method default param
      * */
-    public static void main(String args[]){
-    new Frame();
-
+    public static void main(String[] args){
+        new Frame();
     }
 }
